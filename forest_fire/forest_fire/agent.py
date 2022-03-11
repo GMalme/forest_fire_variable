@@ -1,3 +1,4 @@
+from random import random
 from mesa import Agent
 
 
@@ -24,6 +25,9 @@ class TreeCell(Agent):
         super().__init__(pos, model)
         self.pos = pos
         self.condition = "Fine"
+        
+
+        
 
     def step(self):
         """
