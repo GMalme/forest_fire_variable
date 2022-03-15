@@ -88,12 +88,12 @@ def batch_run():
     }
 
     variable_params = {
-        "density": [0.01, 1.0, 0.5], 
-        "prob_fire": [0.01, 0.5, 1.0],
-        "start_fire": [5, 50, 90]
+        "density": [0.4, 0.6, 0.85], 
+        "prob_fire": [0.45, 0.60, 0.80],
+        "start_fire": [40, 50, 100]
     }
-    experiments_per_parameter_configuration = 10
-    max_steps_per_simulation = 10
+    experiments_per_parameter_configuration = 100
+    max_steps_per_simulation = 50
     batch_run = BatchRunner(
         ForestFire,
         variable_params,
@@ -105,10 +105,6 @@ def batch_run():
             "Fire": fire(ForestFire),
             "Burned Out": burned(ForestFire),
         },
-        #agent_reporters= {
-         #   "Humid" : humid
-        #},
-
     )
 
     batch_run.run_all()
@@ -118,7 +114,7 @@ def batch_run():
 
     now = datetime.datetime.now().strftime("%Y-%m-%d")
     file_name_suffix =  ("iter"+str(10)+
-                        "steps"+str(100)+"lower_firemans"+now
+                        "steps"+str(100)+"fire_variable"+now
                         )
     run_model_data.to_csv("model_data"+file_name_suffix+".csv")
     #run_agent_data.to_csv("agent_data"+file_name_suffix+".csv")
