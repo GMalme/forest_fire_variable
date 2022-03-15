@@ -11,7 +11,7 @@ def forest_fire_portrayal(tree):
     if tree is None:
         return
     portrayal = {"Shape": "rect", "w": 1, "h": 1, "Filled": "true", "Layer": 0}
-    (x, y) = tree.get_pos()
+    (x, y) = tree.pos
     portrayal["x"] = x
     portrayal["y"] = y
     portrayal["Color"] = COLORS[tree.condition]
@@ -30,7 +30,8 @@ model_params = {
     "height": 100,
     "width": 100,
     "density": UserSettableParameter("slider", "Tree density", 0.65, 0.01, 1.0, 0.01),
-    "variable": UserSettableParameter("slider", "variable", 0, 0, 99, 0.01),
+    "prob_fire": UserSettableParameter("slider", "probabilidade de espalhar", 0.65, 0.01, 1.0, 0.01),
+    "start_fire": UserSettableParameter("slider", "tamanho da chama inicial", 0.45, 5, 100, 1),
 }
 server = ModularServer(
     ForestFire, [canvas_element, tree_chart, pie_chart], "Forest Fire", model_params
